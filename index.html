@@ -51,11 +51,21 @@
         .card p { color: #666; margin-bottom: 20px; line-height: 1.5; }
         .card-link { color: var(--accent-color); font-weight: bold; border-bottom: 2px solid transparent; }
         
-        /* 新增：视频区域样式 */
+        /* 视频区域样式 - 已修改 */
         .video-section { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 40px; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
         .video-item { text-align: center; }
-        .video-item video { width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: #000; }
+        
+        /* 核心修改点：强制视频容器为 16:9 比例 */
+        .video-item video {
+            width: 100%;
+            aspect-ratio: 16 / 9; /* 强制 16:9 */
+            object-fit: cover;    /* 确保图片填满容器不变形 */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #000;
+        }
+        
         .video-item h4 { margin-top: 15px; margin-bottom: 5px; font-size: 1.1rem; }
         
         /* 联系表单 */
@@ -82,7 +92,8 @@
         <nav class="nav-menu">
             <a href="#" data-i18n="nav_home">Home</a>
             <a href="#manuals" data-i18n="nav_manual">Manuals</a>
-            <a href="#videos" data-i18n="nav_video">Videos</a> <a href="#contact" data-i18n="nav_contact">Contact</a>
+            <a href="#videos" data-i18n="nav_video">Videos</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
             <button id="langBtn" class="lang-switch" onclick="toggleLanguage()">EN / ES</button>
         </nav>
     </header>
@@ -95,7 +106,6 @@
 
     <div class="container grid-container">
         <div class="grid">
-            
             <div class="card" id="video_card">
                 <i class="fas fa-play-circle"></i>
                 <h3 data-i18n="card1_title">Video Tutorials</h3>
@@ -128,21 +138,21 @@
             
             <div class="video-grid">
                 <div class="video-item">
-                    <video controls poster="logo.png"> <source src="video1.mp4" type="video/mp4">
+                    <video controls poster="video1-poster.jpg">
+                        <source src="video1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <h4 data-i18n="video1_label">How to Connect Bluetooth</h4>
                 </div>
 
                 <div class="video-item">
-                    <video controls poster="logo.png">
+                    <video controls poster="video2-poster.jpg">
                         <source src="video2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <h4 data-i18n="video2_label">Function Settings Guide</h4>
                 </div>
-                
-                </div>
+            </div>
         </div>
     </div>
 
