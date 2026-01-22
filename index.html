@@ -11,6 +11,9 @@
         body { background-color: var(--bg-light); color: var(--text-main); }
         a { text-decoration: none; color: inherit; }
 
+        /* 禁止用户选中文字 (可选，防止复制) */
+        /* body { user-select: none; } */
+
         /* 布局样式 */
         header { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         
@@ -51,16 +54,16 @@
         .card p { color: #666; margin-bottom: 20px; line-height: 1.5; }
         .card-link { color: var(--accent-color); font-weight: bold; border-bottom: 2px solid transparent; }
         
-        /* 视频区域样式 - 已修改 */
+        /* 视频区域样式 */
         .video-section { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 40px; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
         .video-item { text-align: center; }
         
-        /* 核心修改点：强制视频容器为 16:9 比例 */
+        /* 视频容器样式 */
         .video-item video {
             width: 100%;
-            aspect-ratio: 16 / 9; /* 强制 16:9 */
-            object-fit: cover;    /* 确保图片填满容器不变形 */
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             background: #000;
@@ -115,16 +118,16 @@
 
             <div class="card" id="manuals">
                 <i class="fas fa-book"></i>
-                <h3 data-i18n="card2_title">Download Manuals</h3>
-                <p data-i18n="card2_desc">Lost your user guide? Download the latest PDF version here.</p>
-                <a href="manual.pdf" target="_blank" class="card-link" data-i18n="card2_link">Download PDF &rarr;</a>
+                <h3 data-i18n="card2_title">View Manuals</h3> <p data-i18n="card2_desc">Lost your user guide? View the latest PDF version here.</p>
+                
+                <a href="manual.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card2_link" oncontextmenu="return false;">View PDF &rarr;</a>
             </div>
 
             <div class="card">
                 <i class="fas fa-question-circle"></i>
                 <h3 data-i18n="card3_title">FAQ</h3>
                 <p data-i18n="card3_desc">Quick answers about bluetooth pairing, settings, and more.</p>
-                <a href="faq.pdf" target="_blank" class="card-link" data-i18n="card3_link">Read FAQ PDF &rarr;</a>
+                <a href="faq.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card3_link" oncontextmenu="return false;">Read FAQ PDF &rarr;</a>
             </div>
         </div>
     </div>
@@ -138,7 +141,7 @@
             
             <div class="video-grid">
                 <div class="video-item">
-                    <video controls poster="video1-poster.jpg">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video1-poster.jpg">
                         <source src="video1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -146,7 +149,7 @@
                 </div>
 
                 <div class="video-item">
-                    <video controls poster="video2-poster.jpg">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video2-poster.jpg">
                         <source src="video2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -162,7 +165,7 @@
             <p data-i18n="form_desc">Have issues? Our team will reply within 24 hours.</p>
         </div>
         
-        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <form action="https://formspree.io/f/maqqlbqq" method="POST">
             <div class="form-row">
                 <div class="form-group">
                     <label data-i18n="label_name">Name</label>
@@ -220,9 +223,9 @@
                 card1_title: "Video Tutorials",
                 card1_desc: "Watch step-by-step videos on how to set up and use your device.",
                 card1_link: "Watch Now →",
-                card2_title: "Download Manuals",
-                card2_desc: "Lost your user guide? Download the latest PDF version here.",
-                card2_link: "Download PDF →",
+                card2_title: "View Manuals",
+                card2_desc: "Lost your user guide? View the latest PDF version here.",
+                card2_link: "View PDF →",
                 card3_title: "FAQ",
                 card3_desc: "Quick answers about bluetooth pairing, settings, and more.",
                 card3_link: "Read FAQ PDF →",
@@ -259,9 +262,9 @@
                 card1_title: "Video Tutoriales",
                 card1_desc: "Vea videos paso a paso sobre cómo configurar y usar su dispositivo.",
                 card1_link: "Ver Ahora →",
-                card2_title: "Descargar Manuales",
-                card2_desc: "¿Perdió su guía de usuario? Descargue la última versión PDF aquí.",
-                card2_link: "Descargar PDF →",
+                card2_title: "Ver Manuales",
+                card2_desc: "¿Perdió su guía de usuario? Vea la última versión PDF aquí.",
+                card2_link: "Ver PDF →",
                 card3_title: "Preguntas Frecuentes",
                 card3_desc: "Respuestas rápidas sobre emparejamiento Bluetooth y configuración.",
                 card3_link: "Leer FAQ PDF →",
