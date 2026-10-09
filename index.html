@@ -92,4 +92,259 @@
         <nav class="nav-menu">
             <a href="#" data-i18n="nav_home">Home</a>
             <a href="#manuals" data-i18n="nav_manual">Manuals</a>
-            <a href="#videos"
+            <a href="#videos" data-i18n="nav_video">Videos</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
+            <button id="langBtn" class="lang-switch" onclick="toggleLanguage()">EN / ES</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 data-i18n="hero_title">Welcome to Tiwain Support</h1>
+        <p data-i18n="hero_desc">Get help with your product setup and usage</p>
+        <a href="#videos" class="cta-button" data-i18n="hero_btn">Watch Tutorials</a>
+    </section>
+
+    <div class="container grid-container">
+        <div class="grid">
+            <div class="card" id="video_card">
+                <i class="fas fa-play-circle"></i>
+                <h3 data-i18n="card1_title">Video Tutorials</h3>
+                <p data-i18n="card1_desc">Watch step-by-step videos on how to set up and use your device.</p>
+                <a href="#videos" class="card-link" data-i18n="card1_link">Watch Now &rarr;</a>
+            </div>
+
+            <div class="card" id="manuals">
+                <i class="fas fa-book"></i>
+                <h3 data-i18n="card2_title">View Manuals</h3> <p data-i18n="card2_desc">Lost your user guide? View the latest PDF version here.</p>
+                
+                <a href="manual.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card2_link" oncontextmenu="return false;">View PDF &rarr;</a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-question-circle"></i>
+                <h3 data-i18n="card3_title">FAQ</h3>
+                <p data-i18n="card3_desc">Quick answers about bluetooth pairing, settings, and more.</p>
+                <a href="faq.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card3_link" oncontextmenu="return false;">Read FAQ PDF &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="videos">
+        <div class="video-section">
+            <div class="section-title">
+                <h2 data-i18n="video_title">Operation Guide Videos</h2>
+                <p data-i18n="video_desc">Follow these videos to master your Tiwain device.</p>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video1-poster.jpg">
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 data-i18n="video1_label">How to Connect Bluetooth</h4>
+                </div>
+
+                <div class="video-item">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video2-poster.jpg">
+                        <source src="video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 data-i18n="video2_label">Function Settings Guide</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <div class="section-title">
+            <h2 data-i18n="form_title">Contact Support</h2>
+            <p data-i18n="form_desc">Have issues? Our team will reply within 24 hours.</p>
+        </div>
+        
+        <form id="contactForm" action="https://formspree.io/f/maqqlbqq" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="label_name">Name</label>
+                    <input type="text" name="name" required placeholder="Your Name" data-i18n-placeholder="ph_name">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_order">Order ID (Amazon)</label>
+                    <input type="text" name="order_id" required placeholder="e.g. 123-4567890-1234567" data-i18n-placeholder="ph_order">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="label_email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Your Email" data-i18n-placeholder="ph_email">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_confirm_email">Confirm Email</label>
+                    <input type="email" id="confirm_email" required placeholder="Please re-enter your email" data-i18n-placeholder="ph_confirm_email">
+                </div>
+            </div>
+            
+            <p id="email_error" style="color: var(--accent-color); font-size: 14px; display: none; margin-top: -10px; margin-bottom: 15px;" data-i18n="msg_email_error">Email addresses do not match. Please try again.</p>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label data-i18n="label_type">Request Type</label>
+                <select name="type">
+                    <option data-i18n="opt_issue">Product Issue</option>
+                    <option data-i18n="opt_manual">Request Manual</option>
+                    <option data-i18n="opt_video">Video Request</option>
+                    <option data-i18n="opt_other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="label_msg">Message</label>
+                <textarea name="message" rows="5" placeholder="Describe your issue..." required data-i18n-placeholder="ph_msg"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" data-i18n="btn_submit">Submit Ticket</button>
+        </form>
+
+        <div class="email-info">
+            <span data-i18n="footer_email_text">Or email us at:</span> <a href="mailto:support@tiwain.com">support@tiwain.com</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tiwain Innovation. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_manual: "Manuals",
+                nav_video: "Videos",
+                nav_contact: "Contact",
+                hero_title: "Welcome to Tiwain Support",
+                hero_desc: "Get help with your product setup and usage",
+                hero_btn: "Watch Tutorials",
+                card1_title: "Video Tutorials",
+                card1_desc: "Watch step-by-step videos on how to set up and use your device.",
+                card1_link: "Watch Now →",
+                card2_title: "View Manuals",
+                card2_desc: "Lost your user guide? View the latest PDF version here.",
+                card2_link: "View PDF →",
+                card3_title: "FAQ",
+                card3_desc: "Quick answers about bluetooth pairing, settings, and more.",
+                card3_link: "Read FAQ PDF →",
+                video_title: "Operation Guide Videos",
+                video_desc: "Follow these videos to master your Tiwain device.",
+                video1_label: "How to Connect Bluetooth",
+                video2_label: "Function Settings Guide",
+                form_title: "Contact Support",
+                form_desc: "Have issues? Our team will reply within 24 hours.",
+                label_name: "Your Name",
+                label_email: "Email Address",
+                label_confirm_email: "Confirm Email Address",
+                label_order: "Order ID (Amazon)",
+                label_type: "Request Type",
+                label_msg: "Detailed Message",
+                opt_issue: "Product Issue",
+                opt_manual: "Request Manual",
+                opt_video: "Video Request",
+                opt_other: "Other",
+                ph_name: "Your Name",
+                ph_email: "example@email.com",
+                ph_confirm_email: "Please re-enter your email",
+                ph_order: "e.g. 123-4567890-1234567",
+                ph_msg: "Please describe your issue in detail...",
+                btn_submit: "Submit Ticket",
+                footer_email_text: "Or email us at:",
+                msg_email_error: "Email addresses do not match. Please try again."
+            },
+            es: { 
+                nav_home: "Inicio",
+                nav_manual: "Manuales",
+                nav_video: "Videos",
+                nav_contact: "Contacto",
+                hero_title: "Bienvenido al Soporte de Tiwain",
+                hero_desc: "Obtenga ayuda con la configuración y uso de su producto",
+                hero_btn: "Ver Tutoriales",
+                card1_title: "Video Tutoriales",
+                card1_desc: "Vea videos paso a paso sobre cómo configurar y usar su dispositivo.",
+                card1_link: "Ver Ahora →",
+                card2_title: "Ver Manuales",
+                card2_desc: "¿Perdió su guía de usuario? Vea la última versión PDF aquí.",
+                card2_link: "Ver PDF →",
+                card3_title: "Preguntas Frecuentes",
+                card3_desc: "Respuestas rápidas sobre emparejamiento Bluetooth y configuración.",
+                card3_link: "Leer FAQ PDF →",
+                video_title: "Guía de Video",
+                video_desc: "Siga estos videos para dominar su dispositivo Tiwain.",
+                video1_label: "Cómo conectar Bluetooth",
+                video2_label: "Guía de configuración de funciones",
+                form_title: "Contactar Soporte",
+                form_desc: "¿Tiene problemas? Nuestro equipo responderá en 24 horas.",
+                label_name: "Nombre Completo",
+                label_email: "Correo Electrónico",
+                label_confirm_email: "Confirmar Correo Electrónico",
+                label_order: "ID del Pedido (Amazon)",
+                label_type: "Tipo de Solicitud",
+                label_msg: "Mensaje Detallado",
+                opt_issue: "Problema del Producto",
+                opt_manual: "Solicitar Manual",
+                opt_video: "Solicitar Video",
+                opt_other: "Otro",
+                ph_name: "Su Nombre",
+                ph_email: "ejemplo@email.com",
+                ph_confirm_email: "Vuelva a ingresar su correo",
+                ph_order: "ej: 123-4567890-1234567",
+                ph_msg: "Por favor describa su problema en detalle...",
+                btn_submit: "Enviar Solicitud",
+                footer_email_text: "O envíenos un correo a:",
+                msg_email_error: "Los correos no coinciden. Por favor, inténtelo de nuevo."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang && userLang.toLowerCase().startsWith('es')) {
+                currentLang = 'es';
+            } else {
+                currentLang = 'en';
+            }
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    element.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'es' : 'en';
+            applyLanguage(currentLang);
+        }
+
+        document.addEventListener('DOMContentLoaded', detectLanguage);
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            var email = document.getElementById("email").value;
+            var confirmEmail = document.getElementById("confirm_email").value;
+            var errorMessage = document.getElementById("email_error");
+
+            if (email !== confirmEmail) {
+                event.preventDefault();
+                errorMessage.style.display = "block";
+            } else {
+                errorMessage.style.display = "none";
+            }
