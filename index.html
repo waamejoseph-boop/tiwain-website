@@ -163,6 +163,11 @@
         </div>
         
         <form id="contactForm" action="https://formspree.io/f/maqqlbqq" method="POST">
+            
+            <!-- 【方案2】提交成功后的专属跳转页面设置 -->
+            <!-- 请确保你在网站根目录创建了一个 success.html 页面 -->
+            <input type="hidden" name="_next" value="https://www.tiwain.com/success.html">
+
             <div class="form-row">
                 <div class="form-group">
                     <label data-i18n="label_name">Name</label>
@@ -201,6 +206,11 @@
                 <label data-i18n="label_msg">Message</label>
                 <textarea name="message" rows="5" placeholder="Describe your issue..." required data-i18n-placeholder="ph_msg"></textarea>
             </div>
+
+            <!-- 【方案1】垃圾邮件防丢提醒 -->
+            <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold; margin-bottom: 15px;" data-i18n="msg_spam_warning">
+                * Important: We will reply within 24 hours. If you don't see our email, please check your SPAM or JUNK folder.
+            </p>
 
             <button type="submit" class="submit-btn" data-i18n="btn_submit">Submit Ticket</button>
         </form>
@@ -256,7 +266,8 @@
                 ph_msg: "Please describe your issue in detail...",
                 btn_submit: "Submit Ticket",
                 footer_email_text: "Or email us at:",
-                msg_email_error: "Email addresses do not match. Please try again."
+                msg_email_error: "Email addresses do not match. Please try again.",
+                msg_spam_warning: "* Important: We will reply within 24 hours. If you don't see our email, please check your SPAM or JUNK folder."
             },
             es: { 
                 nav_home: "Inicio",
@@ -298,7 +309,8 @@
                 ph_msg: "Por favor describa su problema en detalle...",
                 btn_submit: "Enviar Solicitud",
                 footer_email_text: "O envíenos un correo a:",
-                msg_email_error: "Los correos no coinciden. Por favor, inténtelo de nuevo."
+                msg_email_error: "Los correos no coinciden. Por favor, inténtelo de nuevo.",
+                msg_spam_warning: "* Importante: Responderemos en 24 horas. Si no ve nuestro correo, revise su carpeta de SPAM o correo no deseado."
             }
         };
 
@@ -348,3 +360,7 @@
             } else {
                 errorMessage.style.display = "none";
             }
+        });
+    </script>
+</body>
+</html>
