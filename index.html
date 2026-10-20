@@ -3,242 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMoon Official | Care & Support</title>
+    <title>Tiwain Support Center</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* 全局样式设定：户外运动风 */
-        :root {
-            --primary-dark: #1F2937; /* 深灰/黑 */
-            --outdoor-green: #2F855A; /* 森林绿 */
-            --vibrant-orange: #ED8936; /* 活力橙 */
-            --text-light: #F3F4F6;
-            --text-dark: #374151;
-            --error-red: #E53E3E; /* 错误提示红 */
-        }
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--text-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        h1, h2, h3 { margin: 0; }
+        :root { --primary-color: #000000; --accent-color: #d32f2f; --bg-light: #f4f6f8; --text-main: #333; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-main); }
         a { text-decoration: none; color: inherit; }
+
+        /* 布局样式 */
+        header { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         
-        /* 导航栏 */
-        header {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo img {
-            height: 40px; 
-            display: block;
-        }
+        .logo img { height: 40px; display: block; }
+
+        .nav-menu { display: flex; align-items: center; }
+        .nav-menu a { margin-left: 20px; font-weight: 500; font-size: 0.95rem; }
         
-        /* 主视觉区 Hero Section */
-        .hero {
-            background: linear-gradient(rgba(31, 41, 55, 0.7), rgba(47, 133, 90, 0.7)), url('hero-bg.jpg') center/cover no-repeat;
-            color: white;
-            padding: 6rem 5%; 
-            text-align: center;
-        }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; opacity: 0.9; }
-        .btn {
-            background-color: var(--vibrant-orange);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
+        .lang-switch {
+            margin-left: 20px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
             font-weight: bold;
-            display: inline-block;
-            transition: transform 0.2s;
         }
-        .btn:hover { transform: translateY(-2px); background-color: #DD6B20; }
+        .lang-switch:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* 核心服务承诺区 Features */
-        .features {
-            padding: 4rem 5%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+        /* Hero 区域 */
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; color: white; padding: 80px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+        .cta-button { background-color: var(--accent-color); color: white; padding: 15px 40px; font-size: 1.1rem; border-radius: 50px; font-weight: bold; transition: 0.3s; display: inline-block; }
+        .cta-button:hover { background-color: #b71c1c; transform: scale(1.05); }
+        
+        /* 容器通用样式 */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        
+        /* 网格卡片区域 */
+        .grid-container { margin-top: -40px; position: relative; z-index: 10; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: white; padding: 40px 30px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .card p { color: #666; margin-bottom: 20px; line-height: 1.5; }
+        .card-link { color: var(--accent-color); font-weight: bold; border-bottom: 2px solid transparent; }
+        
+        /* 视频区域样式 */
+        .video-section { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .video-item { text-align: center; }
+        
+        /* 视频容器样式 */
+        .video-item video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #000;
         }
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--outdoor-green);
-        }
-        .feature-card h3 { color: var(--outdoor-green); margin-bottom: 1rem; }
-
-        /* 客户支持与表单 Support Section */
-        .support {
-            background-color: #E5E7EB;
-            padding: 4rem 5%;
-            text-align: center;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
-        label { font-weight: bold; font-size: 0.9rem; }
-        input, textarea {
-            width: 100%; padding: 0.8rem;
-            border: 1px solid #D1D5DB; border-radius: 5px;
-            box-sizing: border-box; font-family: inherit;
-        }
-        button {
-            background-color: var(--outdoor-green);
-            color: white; padding: 1rem;
-            border: none; border-radius: 5px;
-            font-size: 1rem; font-weight: bold; cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover { background-color: #276749; }
-
-        /* 页脚 Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: white; text-align: center;
-            padding: 2rem 5%; font-size: 0.9rem;
-        }
+        
+        .video-item h4 { margin-top: 15px; margin-bottom: 5px; font-size: 1.1rem; }
+        
+        /* 联系表单 */
+        .contact-section { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .section-title { text-align: center; margin-bottom: 30px; }
+        .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
+        .form-group { flex: 1; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #444; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
+        .submit-btn { width: 100%; background: var(--primary-color); color: white; border: none; padding: 15px; font-size: 1.1rem; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
+        .email-info { text-align: center; margin-top: 20px; color: #666; }
+        
+        footer { background: #222; color: #aaa; text-align: center; padding: 30px; margin-top: 50px; }
+        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } .form-row { flex-direction: column; gap: 0; } .form-group { margin-bottom: 15px; } }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
     <header>
         <div class="logo">
-            <a href="#"><img src="logo.png" alt="FitMoon Logo"></a>
+            <img src="logo.png" alt="Tiwain Logo">
         </div>
-        <nav>
-            <a href="#support">Support & Warranty</a>
+
+        <nav class="nav-menu">
+            <a href="#" data-i18n="nav_home">Home</a>
+            <a href="#manuals" data-i18n="nav_manual">Manuals</a>
+            <a href="#videos" data-i18n="nav_video">Videos</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
+            <button id="langBtn" class="lang-switch" onclick="toggleLanguage()">EN / ES</button>
         </nav>
     </header>
 
-    <!-- 主视觉区 (售后安抚文案) -->
     <section class="hero">
-        <h1>FitMoon Care & Support</h1>
-        <p>Having trouble with your watch? Please don't worry. We stand 100% behind our products. Whether it's a setup issue or a defective unit, we are here to make it right.</p>
-        <a href="#support" class="btn">Get Help Now</a>
+        <h1 data-i18n="hero_title">Welcome to Tiwain Support</h1>
+        <p data-i18n="hero_desc">Get help with your product setup and usage</p>
+        <a href="#videos" class="cta-button" data-i18n="hero_btn">Watch Tutorials</a>
     </section>
 
-    <!-- 核心服务承诺区 (三大售后承诺) -->
-    <section class="features">
-        <div class="feature-card">
-            <h3>Hassle-Free Replacements</h3>
-            <p>If your watch experiences any quality issues, we will send you a brand-new replacement for absolutely free. No complicated return process is required.</p>
-        </div>
-        <div class="feature-card">
-            <h3>100% Satisfaction Guarantee</h3>
-            <p>We take full responsibility for your shopping experience. We kindly ask you to give us the opportunity to solve your problem before making any final decisions or sharing your feedback online.</p>
-        </div>
-        <div class="feature-card">
-            <h3>24-Hour Fast Response</h3>
-            <p>Reach out to us anytime. Our dedicated support team responds within 24 hours to turn any frustrating situation into a 5-star experience.</p>
-        </div>
-    </section>
+    <div class="container grid-container">
+        <div class="grid">
+            <div class="card" id="video_card">
+                <i class="fas fa-play-circle"></i>
+                <h3 data-i18n="card1_title">Video Tutorials</h3>
+                <p data-i18n="card1_desc">Watch step-by-step videos on how to set up and use your device.</p>
+                <a href="#videos" class="card-link" data-i18n="card1_link">Watch Now &rarr;</a>
+            </div>
 
-    <!-- 视频指导区 Video Guides -->
-    <section class="support" style="background-color: white;">
-        <h2>Video Guides</h2>
-        <p>Learn how to set up and get the most out of your FitMoon watch.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2rem;">
+            <div class="card" id="manuals">
+                <i class="fas fa-book"></i>
+                <h3 data-i18n="card2_title">View Manuals</h3> <p data-i18n="card2_desc">Lost your user guide? View the latest PDF version here.</p>
+                
+                <a href="manual.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card2_link" oncontextmenu="return false;">View PDF &rarr;</a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-question-circle"></i>
+                <h3 data-i18n="card3_title">FAQ</h3>
+                <p data-i18n="card3_desc">Quick answers about bluetooth pairing, settings, and more.</p>
+                <a href="faq.pdf#toolbar=0" target="_blank" class="card-link" data-i18n="card3_link" oncontextmenu="return false;">Read FAQ PDF &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="videos">
+        <div class="video-section">
+            <div class="section-title">
+                <h2 data-i18n="video_title">Operation Guide Videos</h2>
+                <p data-i18n="video_desc">Follow these videos to master your Tiwain device.</p>
+            </div>
             
-            <!-- 视频 1：如何配对 -->
-            <div style="width: 100%; max-width: 400px; text-align: left;">
-                <h3 style="color: var(--outdoor-green); margin-bottom: 1rem;">How to pair your watch</h3>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Z0Kue_sHub0" frameborder="0" allowfullscreen></iframe>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video1-poster.jpg">
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 data-i18n="video1_label">How to Connect Bluetooth</h4>
+                </div>
+
+                <div class="video-item">
+                    <video controls controlsList="nodownload" oncontextmenu="return false;" disablePictureInPicture poster="video2-poster.jpg">
+                        <source src="video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h4 data-i18n="video2_label">Function Settings Guide</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <div class="section-title">
+            <h2 data-i18n="form_title">Contact Support</h2>
+            <p data-i18n="form_desc">Have issues? Our team will reply within 24 hours.</p>
+        </div>
+        
+        <form id="contactForm" action="https://formspree.io/f/maqqlbqq" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="label_name">Name</label>
+                    <input type="text" name="name" required placeholder="Your Name" data-i18n-placeholder="ph_name">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_order">Order ID (Amazon)</label>
+                    <input type="text" name="order_id" required placeholder="e.g. 123-4567890-1234567" data-i18n-placeholder="ph_order">
                 </div>
             </div>
 
-            <!-- 视频 2：如何校准指南针 -->
-            <div style="width: 100%; max-width: 400px; text-align: left;">
-                <h3 style="color: var(--outdoor-green); margin-bottom: 1rem;">How to calibrate your compass</h3>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/3Zilr7loeuI" frameborder="0" allowfullscreen></iframe>
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-i18n="label_email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Your Email" data-i18n-placeholder="ph_email">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_confirm_email">Confirm Email</label>
+                    <input type="email" id="confirm_email" required placeholder="Please re-enter your email" data-i18n-placeholder="ph_confirm_email">
                 </div>
             </div>
-
-        </div>
-    </section>
-
-    <!-- 客服与保修表单区 -->
-    <section id="support" class="support">
-        <h2>Submit a Warranty Claim</h2>
-        <p>Please fill out the form below with your Amazon order number. Let us turn your problem into a happy resolution!</p>
-        <div class="form-container">
             
-            <!-- 表单区域 -->
-            <form id="contactForm" action="https://formspree.io/f/xqpzypre" method="POST">
-                
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required placeholder="John Doe">
-                
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            <p id="email_error" style="color: var(--accent-color); font-size: 14px; display: none; margin-top: -10px; margin-bottom: 15px;" data-i18n="msg_email_error">Email addresses do not match. Please try again.</p>
 
-                <!-- 邮箱二次确认 -->
-                <label for="confirm_email">Confirm Email Address</label>
-                <input type="email" id="confirm_email" required placeholder="Please re-enter your email">
-                
-                <!-- 隐藏的错误提示语 -->
-                <p id="email_error" style="color: var(--error-red); font-size: 14px; display: none; margin-top: -10px; margin-bottom: 5px;">
-                    Email addresses do not match. Please try again.
-                </p>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label data-i18n="label_type">Request Type</label>
+                <select name="type">
+                    <option data-i18n="opt_issue">Product Issue</option>
+                    <option data-i18n="opt_manual">Request Manual</option>
+                    <option data-i18n="opt_video">Video Request</option>
+                    <option data-i18n="opt_other">Other</option>
+                </select>
+            </div>
 
-                <label for="order_number">Amazon Order Number (If applicable)</label>
-                <input type="text" id="order_number" name="order_number" placeholder="123-1234567-1234567">
-                
-                <label for="message">How can we help?</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Describe your issue or question here..."></textarea>
-                
-                <!-- 【功能1】垃圾邮件防丢提醒 -->
-                <p style="color: var(--vibrant-orange); font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; margin-top: 10px;">
-                    * Important: We will reply within 24 hours. If you don't see our email, please check your SPAM or JUNK folder.
-                </p>
+            <div class="form-group">
+                <label data-i18n="label_msg">Message</label>
+                <textarea name="message" rows="5" placeholder="Describe your issue..." required data-i18n-placeholder="ph_msg"></textarea>
+            </div>
 
-                <button type="submit">Submit Ticket</button>
-            </form>
+            <!-- 更新后的防丢提醒 -->
+            <p style="color: var(--accent-color); font-size: 0.9rem; font-weight: bold; margin-bottom: 15px;" data-i18n="msg_spam_warning">
+                * Important: We will reply within 24 hours. If you don't see our email, please check your SPAM or JUNK folder, or email us directly at support@tiwain.com.
+            </p>
+
+            <button type="submit" class="submit-btn" data-i18n="btn_submit">Submit Ticket</button>
+        </form>
+
+        <div class="email-info">
+            <span data-i18n="footer_email_text">Or email us at:</span> <a href="mailto:support@tiwain.com">support@tiwain.com</a>
         </div>
-    </section>
+    </div>
 
-    <!-- 页脚 -->
     <footer>
-        <p>&copy; 2026 FitMoon Official. All rights reserved.</p>
+        <p>&copy; 2024 Tiwain Innovation. All Rights Reserved.</p>
     </footer>
 
-    <!-- 【功能2】 AJAX 提交与二次确认联合逻辑 -->
     <script>
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_manual: "Manuals",
+                nav_video: "Videos",
+                nav_contact: "Contact",
+                hero_title: "Welcome to Tiwain Support",
+                hero_desc: "Get help with your product setup and usage",
+                hero_btn: "Watch Tutorials",
+                card1_title: "Video Tutorials",
+                card1_desc: "Watch step-by-step videos on how to set up and use your device.",
+                card1_link: "Watch Now →",
+                card2_title: "View Manuals",
+                card2_desc: "Lost your user guide? View the latest PDF version here.",
+                card2_link: "View PDF →",
+                card3_title: "FAQ",
+                card3_desc: "Quick answers about bluetooth pairing, settings, and more.",
+                card3_link: "Read FAQ PDF →",
+                video_title: "Operation Guide Videos",
+                video_desc: "Follow these videos to master your Tiwain device.",
+                video1_label: "How to Connect Bluetooth",
+                video2_label: "Function Settings Guide",
+                form_title: "Contact Support",
+                form_desc: "Have issues? Our team will reply within 24 hours.",
+                label_name: "Your Name",
+                label_email: "Email Address",
+                label_confirm_email: "Confirm Email Address",
+                label_order: "Order ID (Amazon)",
+                label_type: "Request Type",
+                label_msg: "Detailed Message",
+                opt_issue: "Product Issue",
+                opt_manual: "Request Manual",
+                opt_video: "Video Request",
+                opt_other: "Other",
+                ph_name: "Your Name",
+                ph_email: "example@email.com",
+                ph_confirm_email: "Please re-enter your email",
+                ph_order: "e.g. 123-4567890-1234567",
+                ph_msg: "Please describe your issue in detail...",
+                btn_submit: "Submit Ticket",
+                footer_email_text: "Or email us at:",
+                msg_email_error: "Email addresses do not match. Please try again.",
+                msg_spam_warning: "* Important: We will reply within 24 hours. If you don't see our email, please check your SPAM or JUNK folder, or email us directly at support@tiwain.com."
+            },
+            es: { 
+                nav_home: "Inicio",
+                nav_manual: "Manuales",
+                nav_video: "Videos",
+                nav_contact: "Contacto",
+                hero_title: "Bienvenido al Soporte de Tiwain",
+                hero_desc: "Obtenga ayuda con la configuración y uso de su producto",
+                hero_btn: "Ver Tutoriales",
+                card1_title: "Video Tutoriales",
+                card1_desc: "Vea videos paso a paso sobre cómo configurar y usar su dispositivo.",
+                card1_link: "Ver Ahora →",
+                card2_title: "Ver Manuales",
+                card2_desc: "¿Perdió su guía de usuario? Vea la última versión PDF aquí.",
+                card2_link: "Ver PDF →",
+                card3_title: "Preguntas Frecuentes",
+                card3_desc: "Respuestas rápidas sobre emparejamiento Bluetooth y configuración.",
+                card3_link: "Leer FAQ PDF →",
+                video_title: "Guía de Video",
+                video_desc: "Siga estos videos para dominar su dispositivo Tiwain.",
+                video1_label: "Cómo conectar Bluetooth",
+                video2_label: "Guía de configuración de funciones",
+                form_title: "Contactar Soporte",
+                form_desc: "¿Tiene problemas? Nuestro equipo responderá en 24 horas.",
+                label_name: "Nombre Completo",
+                label_email: "Correo Electrónico",
+                label_confirm_email: "Confirmar Correo Electrónico",
+                label_order: "ID del Pedido (Amazon)",
+                label_type: "Tipo de Solicitud",
+                label_msg: "Mensaje Detallado",
+                opt_issue: "Problema del Producto",
+                opt_manual: "Solicitar Manual",
+                opt_video: "Solicitar Video",
+                opt_other: "Otro",
+                ph_name: "Su Nombre",
+                ph_email: "ejemplo@email.com",
+                ph_confirm_email: "Vuelva a ingresar su correo",
+                ph_order: "ej: 123-4567890-1234567",
+                ph_msg: "Por favor describa su problema en detalle...",
+                btn_submit: "Enviar Solicitud",
+                footer_email_text: "O envíenos un correo a:",
+                msg_email_error: "Los correos no coinciden. Por favor, inténtelo de nuevo.",
+                msg_spam_warning: "* Importante: Responderemos en 24 horas. Si no ve nuestro correo, revise su carpeta de SPAM o correo no deseado, o envíenos un correo electrónico directamente a support@tiwain.com."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang && userLang.toLowerCase().startsWith('es')) {
+                currentLang = 'es';
+            } else {
+                currentLang = 'en';
+            }
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    element.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'es' : 'en';
+            applyLanguage(currentLang);
+        }
+
+        document.addEventListener('DOMContentLoaded', detectLanguage);
+
+        // 包含 AJAX 强制跳转的拦截逻辑
         document.getElementById("contactForm").addEventListener("submit", function(event) {
-            // 阻止表单的默认跳转行为，绕过 Formspree 付费墙限制
             event.preventDefault();
 
             var email = document.getElementById("email").value;
             var confirmEmail = document.getElementById("confirm_email").value;
             var errorMessage = document.getElementById("email_error");
 
-            // 1. 邮箱二次确认验证
             if (email !== confirmEmail) {
                 errorMessage.style.display = "block";
-                return; // 验证失败，停止执行
+                return;
             } else {
                 errorMessage.style.display = "none";
             }
 
-            // 2. 验证通过，获取表单数据并改变按钮状态防连击
             var form = event.target;
             var data = new FormData(form);
             var submitBtn = form.querySelector('button[type="submit"]');
@@ -246,7 +366,6 @@
             submitBtn.innerText = "Sending..."; 
             submitBtn.disabled = true;
 
-            // 3. 使用纯前端 fetch 静默发送数据
             fetch(form.action, {
                 method: form.method,
                 body: data,
@@ -255,7 +374,6 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    // 发送成功，强制执行本地代码跳转至成功页
                     window.location.href = "success.html"; 
                 } else {
                     alert("Oops! There was a problem submitting your form");
